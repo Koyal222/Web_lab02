@@ -1,0 +1,47 @@
+#container{
+
+    border-radius: 50%;
+    flex-wrap: wrap;
+
+  
+}
+
+.ball{
+
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: red;
+
+}
+.column {
+    height: 80vh;
+    padding: 20px;
+    flex: 1;
+    border: 1px;
+    box-sizing: border-box;
+    background-color: bisque;
+    flex-direction: column;
+    border: 1px solid black;
+
+}
+#container1{
+    display: flex;
+    height:80vh;
+
+   
+    
+}
+
+#button1{
+    margin-left: 50%;
+    margin-right: 50%;
+    padding: 10px;
+    border-radius: 25px;
+}
+#changeColor{
+    width: max-content;
+    margin-right: 50%;
+    padding: 10px;
+    border-radius: 25px;
+}
