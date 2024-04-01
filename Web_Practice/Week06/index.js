@@ -22,8 +22,11 @@ function buttonPressed1(){
      const column = document.createElement('div')
      column.className="column"
      container.appendChild(column)
+     generate()
  }
  plus.onclick= buttonPressed1
+
+
 changeColor= document.getElementById("changeColor")
 function getRandomColor(){
     var letters = '0123456789ABCDEF';
@@ -33,9 +36,10 @@ function getRandomColor(){
   }
   return color;
 }
-changeColor.onclick=function(){
-const arr= document.getElementsByClassName('column')
+function generate(){
+const arr= document.querySelectorAll('.column')
 arr.forEach(element => {
     element.style.backgroundColor=getRandomColor();
 });
 }
+changeColor.onclick= generate

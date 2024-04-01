@@ -27,29 +27,31 @@
 //     console.log(item)
 // }
 
-// numbers=[1,2,3,4,5] 
+//  numbers=[1,2,3,4,5] 
 // numbers.push(6)
 // numbers.shift()
 // numbers.unshift(1)
-//y=numbers.slice(1,3)
-//numbers.splice(1,3, 8,7,9)
+// y=numbers.slice(1,3)
+//     numbers.splice(1,3, 8,7,9)
 // console.log(numbers.includes(8))
-//console.log(y)
-// let person = {
-//     firstName: 'John',
-//     lastName: 'Doe',
-//     age: 30,
-//     isStudent: false,
-// }
+//     console.log(numbers)
+//     console.log(y)
+let person = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 30,
+    isStudent: false,
+}
 // Object.freeze(person)
 // //console.log(Object.entries(person))
-// source={
-//     name:"koyal",
-//     semester:7
-// }
-// const r_obj= Object.assign(person,source)
-// console.log(person)
-// console.log(Object.getOwnPropertyNames(person))
+source={
+    name:"koyal",
+    semester:7
+}
+Object.assign(person,source)
+console.log(person)
+
+console.log(Object.getOwnPropertyNames(person))
 // person.age=40
  //console.log(person)
 
@@ -71,16 +73,16 @@
 // console.log(double_the_Fun(num1, 3))
 
 
-const person = {
-    name: 'Nathan',
-    skills: ['HTML', 'CSS', 'JavaScript'],
+// const person = {
+//     name: 'Nathan',
+//     skills: ['HTML', 'CSS', 'JavaScript'],
   
-    showSkills : () => {
-        console.log(this.skills)
-    //   this.skills.forEach(function (skill) {
-    //     console.log(`${this.name} is skilled in ${skill}`);
-    //   });
-    },
-  };
+//     showSkills : () => {
+//         console.log(this.skills)
+//     //   this.skills.forEach(function (skill) {
+//     //     console.log(`${this.name} is skilled in ${skill}`);
+//     //   });
+//     },
+//   };
   
-  person.showSkills();
+//   person.showSkills();
