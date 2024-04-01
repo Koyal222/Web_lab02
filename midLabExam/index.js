@@ -42,90 +42,110 @@ const products = [
   ];
   
   const container = document.getElementById("product-container");
-  const cartDiv = document.getElementById("cart");
-  let cart = [];
+  const cartContainer = document.getElementById("cart");
   
+  const cart = [];
   
-  function displayProducts() {
-    products.forEach((product) => {
-      const productDiv = document.createElement("div");
-      productDiv.classList.add("product");
+  products.forEach((product) => {
+    const productDiv = document.createElement("div");
+    productDiv.classList.add("product");
   
-      const imageContainer = document.createElement("div");
-      imageContainer.classList.add("image-container");
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("image-container");
   
-      const image = document.createElement("img");
-      image.src = product.imageUrl;
-      image.alt = product.name;
-      image.classList.add("product-image");
+    const image = document.createElement("img");
+    image.src = product.imageUrl;
+    image.alt = product.name;
+    image.classList.add("product-image");
   
-      imageContainer.appendChild(image);
+    imageContainer.appendChild(image);
   
-      const infoDiv = document.createElement("div");
-      infoDiv.classList.add("info");
+    const infoDiv = document.createElement("div");
+    infoDiv.classList.add("info");
   
-      const name = document.createElement("h2");
-      name.textContent = product.name;
+    const name = document.createElement("h2");
+    name.textContent = product.name;
   
-      const price = document.createElement("p");
-      price.textContent = "$" + product.price.toFixed(2);
+    const price = document.createElement("p");
+    price.textContent = "$" + product.price.toFixed(2);
   
-      const button = document.createElement("button");
-      button.textContent = "Add to Cart";
-      button.classList.add("add-to-cart-btn");
-      button.addEventListener("click", function() {
-        addToCart(product);
-      });
+    const button = document.createElement("button");
+    button.textContent = "Add to Cart";
+    button.classList.add("add-to-cart-btn");
   
-      infoDiv.appendChild(name);
-      infoDiv.appendChild(price);
-      infoDiv.appendChild(button);
-  
-      productDiv.appendChild(imageContainer);
-      productDiv.appendChild(infoDiv);
-  
-      container.appendChild(productDiv);
+    button.addEventListener("click", () => {
+      addToCart(product);
+      updateCart();
     });
-  }
+  
+    infoDiv.appendChild(name);
+    infoDiv.appendChild(price);
+    infoDiv.appendChild(button);
+  
+    productDiv.appendChild(imageContainer);
+    productDiv.appendChild(infoDiv);
+  
+    container.appendChild(productDiv);
+  });
   
   function addToCart(product) {
-    const existingCartItem = cart.find(item => item.name === product.name);
-    if (existingCartItem) {
-      existingCartItem.quantity++;
+    const existingItem = cart.find(item => item.name === product.name);
+    if (existingItem) {
+      existingItem.quantity++;
     } else {
-      cart.push({...product, quantity: 1});
+      cart.push({ ...product, quantity: 1 });
     }
-    displayCart();
   }
   
-  function displayCart() {
-    cartDiv.innerHTML = "";
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+  
+  function updateCart() {
+    cartContainer.innerHTML = ""; 
     let totalPrice = 0;
-    cart.forEach((product) => {
-      const cartItem = document.createElement("div");
-      cartItem.innerHTML = `
-        <p>${product.name} - $${(product.price * product.quantity).toFixed(2)}</p>
-        <input type="number" min="1" value="${product.quantity}" onchange="updateQuantity('${product.name}', this.value)">
-        <button onclick="removeFromCart('${product.name}')">Remove</button>
-      `;
-      cartDiv.appendChild(cartItem);
-      totalPrice += product.price * product.quantity;
+    cart.forEach((item, index) => {
+      const cartItemDiv = document.createElement("div"); // created Div cart
+      cartItemDiv.classList.add("cart-item");
+  
+      const itemName = document.createElement("p"); // paragraph for showing price
+      itemName.textContent = item.name;
+  
+      const itemPrice = document.createElement("p");
+      itemPrice.textContent = "$" + (item.price * item.quantity).toFixed(2);
+  
+      const quantityInput = document.createElement("input");
+      quantityInput.type = "number";
+      quantityInput.min = 1;
+      quantityInput.value = item.quantity;
+      quantityInput.addEventListener("change", (event) => {
+        const newQuantity = parseInt(event.target.value);
+        if (newQuantity < 1) {
+          removeFromCart(index);
+        } else {
+          cart[index].quantity = newQuantity;
+          updateCart();
+        }
+      });
+  
+      const removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.addEventListener("click", () => {
+        removeFromCart(index);
+      });
+  
+      cartItemDiv.appendChild(itemName);
+      cartItemDiv.appendChild(itemPrice);
+      cartItemDiv.appendChild(quantityInput);
+      cartItemDiv.appendChild(removeButton);
+  
+      cartContainer.appendChild(cartItemDiv);
+  
+      totalPrice += item.price * item.quantity;
     });
-    cartDiv.innerHTML += <p>Total Price: $${totalPrice.toFixed(2)}</p>;
+  
+    const totalPriceElement = document.createElement("p");
+    totalPriceElement.textContent = "Total Price: $" + totalPrice.toFixed(2);
+    cartContainer.appendChild(totalPriceElement);
   }
-  
-  
-  function removeFromCart(productName) {
-    cart = cart.filter((product) => product.name !== productName);
-    displayCart();
-  }
-  
-  
-  function updateQuantity(productName, quantity) {
-    const product = cart.find(item => item.name === productName);
-    product.quantity = parseInt(quantity);
-    displayCart();
-  }
-  
-  
-  displayProducts();
