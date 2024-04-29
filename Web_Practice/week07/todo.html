@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txt" placeholder="Enter text...">
+    <button id="btn1">Enter</button>
+    <button id="btn2">Remove</button>
+    <div id="taskArea">        
+    </div>
+
+
+    <script>
+        const enterBtn = document.getElementById("btn1")
+        const textArea = document.getElementById("taskArea")
+        const removeBtn = document.getElementById("btn2")
+        let arrList =[];
+        enterBtn.onclick=function(){
+            const tValue= document.getElementById("txt")
+            var textValue = tValue.value
+            console.log(textValue)
+            arrList.push(textValue)
+           const myDiv = document.createElement("div")
+            myDiv.innerText = textValue
+            textArea.appendChild(myDiv)
+            tValue.value=''
+            // console.log(arrList)
+            // arrList = arrList
+            printArr()
+    
+        }
+        let stringList;
+        removeBtn.onclick=function(){
+            console.log(arr)
+        }
+        function printArr(){
+            // console.log(arrList)
+             stringList = JSON.stringify(arrList)
+            console.log("string list",stringList)
+            localStorage.setItem("String List",stringList)
+
+        }
+        
+        
+
+        
+        
+
+    </script>
+</body>
+</html>
