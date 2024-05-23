@@ -1,0 +1,72 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.circle {
+  width: 100px; /* Set width and height to create a square */
+  height: 100px;
+  border-radius: 50%; /* Make the border radius 50% to create a circle */
+  background-color: blue; /* Set the background color */
+  padding: 10px;
+}
+.rectangle {
+  width: 200px; /* Set width */
+  height: 100px; /* Set height */
+  background-color: green; /* Set background color */
+  padding: 10px;
+}
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent; /* Half the width of the base */
+  border-right: 50px solid transparent; /* Half the width of the base */
+  border-bottom: 100px solid red; /* Height of the triangle */
+  padding: 10px;
+}
+.square {
+  width: 150px; /* Set width */
+  height: 150px; /* Set height */
+  background-color: blue; /* Set background color */
+  padding: 10px;
+}
+.body{
+  padding: 10px;
+}
